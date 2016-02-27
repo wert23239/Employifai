@@ -9,6 +9,9 @@ queueRef.child("tasks").on("child_added", function (entrySnap) {
     console.log(entry);
 
     // Do api calls, then eventually, write to result/
+    //{}
+
+    badurl= ["one","two"];
     entrySnap.ref().child("result").set({bad: ["one", "two"],warning: "asd"});
     //entrySnap.ref().child("result").set({result: true});
 })
