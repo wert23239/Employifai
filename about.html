@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+//firebase SDK
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employifai</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://cdn.firebase.com/js/client/2.4.1/firebase.js"></script>
+
+</head>
+
+<body>
+<script>
+    function FaceBookLogin() {
+        var ref = new Firebase("https://team-red.firebaseio.com");
+        ref.authWithOAuthRedirect("facebook", function(error) {
+            if (error) {
+                console.log("Login Failed!", error);
+            } else {
+                // We'll never get here, as the page will redirect on success.
+            }
+        });
+       // return ref;
+    }
+    function PushtoQueue(){
+        ref.push({'foo': 'bar'});
+    }
+</script>
+<h1>Employifai</h1>
+<h2>The Facebook Cleanser</h2>
+<p>Click here to get rid of all bad photos on Facebook.</p>
+<p><button class="button" onclick="FaceBookLogin()">Login</button></p>
+<p><button class="button" onclick="window.location.href=''">Run</button></p>
+</body>
+</html>
