@@ -12,7 +12,7 @@
 <body>
 <script>
     function FaceBookLogin() {
-        var ref = new Firebase("https://team-red.firebaseio.com/queue/tasks");
+        ref = new Firebase("https://team-red.firebaseio.com/queue");
         ref.authWithOAuthRedirect("facebook", function(error) {
             if (error) {
                 console.log("Login Failed!", error);
@@ -20,9 +20,12 @@
                 // We'll never get here, as the page will redirect on success.
             }
         });
+        
         ref.push({'foo': 'bar'});
+        // return ref;
     }
-    function PushtoQueue(ref){
+    function PushtoQueue(){
+        console.log("ref=" +ref);
         ref.push({'foo': 'bar'});
     }
 </script>
@@ -30,6 +33,6 @@
 <h2>The Facebook Cleanser</h2>
 <p>Click here to get rid of all bad photos on Facebook.</p>
 <p><button class="button" onclick="FaceBookLogin()">Login</button></p>
-<p><button class="button" onclick="window.location.href=''">Run</button></p>
+<p><button class="button" onclick="">Run</button></p>
 </body>
 </html>
