@@ -20,19 +20,27 @@ queueRef.on("child_added", function (entrySnap) {
         console.log(err);
         console.log(res); // { id: '4', name: 'Mark Zuckerberg'... }
           //res.paging.toString();
+          for(var i = 0; i < res.data.length; i++)
+          {
+              files.push(res.data[i]["source"]);
+          }
           //files.append(res.data.);
         while(res.paging && res.paging.next) {
          res.paging= graph.get(res.paging.next, function(err, res) {
             //console.log(err);
             //console.log(res);
+             for(var i = 0; i < res.data.length; i++)
+             {
+                 files.push(res.data[i]["source"]);
+             }
              //files.add(res.data);
             return res.paging
           });
-           // res.paging=res.paging.next;
+           console.log(files);
         }
       });
-    queueRef.remove();
-   // entrySnap.ref().child("result").set({bad: ["one", "two"],warning: "asd"});
+    //queueRef.remove();
+    entrySnap.ref().child("result").set({link: files});
     //entrySnap.ref().child("result").set({result: true});
 })
 //var queue = new Queue(queueRef, {sanitize: false}, function(data, progress, resolve, reject) {
