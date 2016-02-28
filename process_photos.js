@@ -2,16 +2,23 @@
 var Queue = require('firebase-queue'),
     Firebase = require('firebase');
 
+var graph = require('fbgraph');
+
 var queueRef = new Firebase('https://team-red.firebaseio.com/queue');
 
-queueRef.child("tasks").on("child_added", function (entrySnap) {
-    var entry = entrySnap.val();
-    console.log(entry);
-
+queueRef.on("child_added", function (entrySnap) {
+    var access_token = entrySnap.val();
+    graph.setAccessToken(access_token);
     // Do api calls, then eventually, write to result/
     //{}
+    console.log(access_token);
 
-    badurl= ["one","two"];
+    var graphObject = graph
+      .get("/me/photos/uploaded", function(err, res) {
+        console.log(err);
+        console.log(res); // { id: '4', name: 'Mark Zuckerberg'... }
+      });
+
     entrySnap.ref().child("result").set({bad: ["one", "two"],warning: "asd"});
     //entrySnap.ref().child("result").set({result: true});
 })
