@@ -58,7 +58,7 @@
         document.querySelector("#done").innerHTML = '';
         if (bad[0] !="empty"){
             document.querySelector("#output").innerHTML += '<div class="high"></div>';
-            document.querySelector(".high").innerHTML += '<h3 class=high>High</h3>';
+            document.querySelector(".high").innerHTML += '<h3 class=highH>Risky</h3>';
             for (var i = 0; i < bad.length; i++) {
                 document.querySelector(".high").innerHTML += '<p class="stack-high"><img src='+bad[i]+' alt="W3Schools.com" style="width:175px;height:175px;"></p>';
                 //document.querySelector("#output").innerHTML += ;
@@ -67,11 +67,12 @@
             }
             // document.querySelector("#output").innerHTML += '</div>';
         }
+        const warning="http://vignette2.wikia.nocookie.net/age-of-ishtaria/images/f/f2/Warning-icon-hi.png/revision/latest?cb=20141214024456";
         if (medium[0] !="empty"){
             document.querySelector("#output").innerHTML += '<div class="medium"></div>';
-            document.querySelector(".medium").innerHTML += '<h3 class=medium>Medium</h3>';
+            document.querySelector(".medium").innerHTML += '<h3 class=mediumH>Dangerous</h3>';
             for (var i = 0; i < medium.length; i++) {
-                document.querySelector(".medium").innerHTML += '<p class="stack-med"><img src='+medium[i]+' alt="W3Schools.com" style="width:175px;height:175px;"></p>';
+                document.querySelector(".medium").innerHTML += '<p class="stack-med"><img src='+medium[i]+' alt="W3Schools.com" style=></p>';
 
             }
             // document.querySelector("#output").innerHTML += '</div>';
@@ -80,7 +81,7 @@
             document.querySelector("#output").innerHTML += '<div class="low"></div>';
             document.querySelector(".low").innerHTML += '<h3>Low</h3>';
             for (var i = 0; i < low.length; i++) {
-                document.querySelector(".low").innerHTML += '<p class="stack-low"><img src='+low[i]+' alt="W3Schools.com" style="width:175px;height:175px;"></p>';
+                document.querySelector(".low").innerHTML += '<p class="stack-low"><img src='+low[i]+' alt="W3Schools.com" style=></p>';
 
             }
             // document.querySelector("#output").innerHTML += '</div>';
