@@ -17,23 +17,26 @@
 <p id="output"></p>
 //if resolve pull from firease/queue/tasks
 <script>
-    var ref = new Firebase("https://team-red.firebaseio.com/queue");
-
-    ref.onAuth(function (user) {
+    var ref = new Firebase("https://team-red.firebaseio.com");
+    ref.remove();
+    var ref = new Firebase("https://team-red.firebaseio.com");
+    var queue = ref.child("queue");
+    var final_photos = ref.child("final_photos")
+    queue.onAuth(function (user) {
       console.log("in on auth")
 
       console.log(user)
       if (!user) return
       console.log(user)
 
-      result = ref.push(user.facebook.accessToken);
+      queue.push(user.facebook.accessToken);
       console.log(user.accessToken, result.toString())
 
 
-        result.child("result").on("value", function (snap) {
-            var bad = ["http://www.w3schools.com/images/w3schools_green.jpg", "https://scontent.xx.fbcdn.net/hphotos-xpf1/v/t1.0-9/12508810_10208635411586437_8162708858364444974_n.jpg?oh=b55d48a05b17f6e626b29e1ee948658e&oe=57700588", "http://www.w3schools.com/images/w3schools_green.jpg", "http://www.w3schools.com/images/w3schools_green.jpg", "http://www.w3schools.com/images/w3schools_green.jpg", "http://www.w3schools.com/images/w3schools_green.jpg", "http://www.w3schools.com/images/w3schools_green.jpg", "http://www.w3schools.com/images/w3schools_green.jpg", "http://www.w3schools.com/images/w3schools_green.jpg", "http://www.w3schools.com/images/w3schools_green.jpg"];
-            var medium= ["http://www.w3schools.com/images/w3schools_green.jpg", "https://scontent.xx.fbcdn.net/hphotos-xpf1/v/t1.0-9/12508810_10208635411586437_8162708858364444974_n.jpg?oh=b55d48a05b17f6e626b29e1ee948658e&oe=57700588"];
-            var low = ["https://scontent.xx.fbcdn.net/hphotos-xpf1/v/t1.0-9/12508810_10208635411586437_8162708858364444974_n.jpg?oh=b55d48a05b17f6e626b29e1ee948658e&oe=57700588"];
+        final_photos.on("value", function (snap) {
+            var bad= snap.val().high;
+            var medium= snap.val().medium;
+            var low = []
 
             if (!snap.val()) return;
             document.querySelector("#output").innerHTML += '<h3>Results</h3>';
@@ -76,11 +79,11 @@
             // document.querySelector("#output").innerHTML += '<p class="stack"><img src=snap.val().high[0] alt="image1" style="width:42px;height:42px;border:0;"></p>';
             // }
         });
-      //ref.remove();
+
     })
 
     function FaceBookLogin() {
-       ref.authWithOAuthRedirect("facebook", function(error) {
+       queue.authWithOAuthRedirect("facebook", function(error) {
          console.log("auth callback")
            if (error) {
                console.log("Login Failed!", error);

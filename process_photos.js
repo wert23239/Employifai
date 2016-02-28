@@ -3,8 +3,9 @@ var Queue = require('firebase-queue'),
     Firebase = require('firebase');
 
 var graph = require('fbgraph');
-
-var queueRef = new Firebase('https://team-red.firebaseio.com/queue');
+var ref = new Firebase('https://team-red.firebaseio.com/');
+var queueRef = ref.child("queue");
+var photos = ref.child("photos");
 
 queueRef.on("child_added", function (entrySnap) {
     var access_token = entrySnap.val();
@@ -36,11 +37,11 @@ queueRef.on("child_added", function (entrySnap) {
              //files.add(res.data);
             return res.paging
           });
-           console.log(files);
+            photos.set({links:files});
+            console.log(files);
         }
       });
     //queueRef.remove();
-    entrySnap.ref().child("result").set({link: files});
     //entrySnap.ref().child("result").set({result: true});
 })
 //var queue = new Queue(queueRef, {sanitize: false}, function(data, progress, resolve, reject) {
