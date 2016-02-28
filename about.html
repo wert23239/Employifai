@@ -41,7 +41,20 @@
       ref.remove();
     })
 
+    function FaceBookLogin() {
+       ref.authWithOAuthRedirect("facebook", function(error) {
+         console.log("auth callback")
+           if (error) {
+               console.log("Login Failed!", error);
+           } else {
+               // We'll never get here, as the page will redirect on success.
+           }
+       },{
+         scope: "user_photos"
+       });
 
+        // return ref;
+    }
 
     document.querySelector("#login").onclick = FaceBookLogin
 </script>
