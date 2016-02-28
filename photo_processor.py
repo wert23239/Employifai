@@ -22,8 +22,9 @@ while True:
 
 
         for image in photo_list:
+            url = image[url];
             tag_dict = {}
-            result2 = clarifai_api2.tag_image_urls(image, select_classes=tags)
+            result2 = clarifai_api2.tag_image_urls(url, select_classes=tags)
             bad=0
             sum=0
             for i in range (len(result2['results'][0]['result']['tag']['classes'])):

@@ -14,11 +14,14 @@ function retrievePhotos(photo_list, url, callback){
     console.log(res); // { id: '4', name: 'Mark Zuckerberg'... }
     //res.paging.toString();
     for(var i = 0; i < res.data.length; i++){
-      photo_list.push(res.data[i]["source"]);
+      values = {}
+      values[url] = res.data[i]["source"];
+      values[link] = res.data[i]["link"]
+      photo_list.push(values);
       }
 
     //files.append(res.data.);
-    if (res.paging.next){
+    if (res.paging && res.paging.next){
       retrievePhotos(photo_list, res.paging.next, callback);
     }
 
@@ -34,7 +37,7 @@ queueRef.on("child_added", function (entrySnap) {
   var access_token = entrySnap.val();
   graph.setAccessToken(access_token);
   var files= [];
-  retrievePhotos(files, "/me/photos?fields=source,album", function() {
+  retrievePhotos(files, "/me/photos/uploaded?fields=source, link", function() {
     console.log("Finished retriving photos.")
   })
   photos.set({links:files});
