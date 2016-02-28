@@ -62,7 +62,11 @@ for image in photo_list:
 
 print("high",high)
 print("low",low)
+if len(high)==0:
+    high.append("empty")
+if len(medium)==0:
+    medium.append("empty")
 
-final_photos_list = {"high":high, "medium": low}
+final_photos_list = {"high":high, "medium": medium}
 
 ref.put('/final_photos', 'final_photos', final_photos_list)

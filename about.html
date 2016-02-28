@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-//firebase SDK
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,11 +16,11 @@
 <p id="output"></p>
 //if resolve pull from firease/queue/tasks
 <script>
-    var ref = new Firebase("https://team-red.firebaseio.com");
-    ref.remove();
+//    var ref = new Firebase("https://team-red.firebaseio.com");
+  //  ref.remove();
     var ref = new Firebase("https://team-red.firebaseio.com");
     var queue = ref.child("queue");
-    var final_photos = ref.child("final_photos/final_photos")
+    var final_photos = ref.child("final_photos");
     queue.onAuth(function (user) {
       console.log("in on auth")
 
@@ -29,18 +28,20 @@
       if (!user) return
       console.log(user)
 
-      queue.push(user.facebook.accessToken);
+      result = queue.push(user.facebook.accessToken);
       console.log(user.accessToken, result.toString())
     })
 
     final_photos.on("child_added", function (snap) {
+      console.log(snap.val())
         var bad= snap.val().high;
         var medium= snap.val().medium;
         var low = []
+        console.log(medium);
 
         if (!snap.val()) return;
         document.querySelector("#output").innerHTML += '<h3>Results</h3>';
-        if (bad.length>0){
+        if (bad[0] !="empty"){
             document.querySelector("#output").innerHTML += '<div class="high"></div>';
             document.querySelector(".high").innerHTML += '<h3>High</h3>';
             for (var i = 0; i < bad.length; i++) {
@@ -51,7 +52,7 @@
             }
             // document.querySelector("#output").innerHTML += '</div>';
         }
-        if (medium.length>0){
+        if (medium[0] !="empty"){
             document.querySelector("#output").innerHTML += '<div class="medium"></div>';
             document.querySelector(".medium").innerHTML += '<h3>Medium</h3>';
             for (var i = 0; i < medium.length; i++) {
