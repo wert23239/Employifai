@@ -30,14 +30,52 @@
       console.log(user.accessToken, result.toString())
 
 
-      result.child("result").on("value", function (snap) {
-          if (!snap.val()) return;
+        result.child("result").on("value", function (snap) {
+            var bad = ["http://www.w3schools.com/images/w3schools_green.jpg", "https://scontent.xx.fbcdn.net/hphotos-xpf1/v/t1.0-9/12508810_10208635411586437_8162708858364444974_n.jpg?oh=b55d48a05b17f6e626b29e1ee948658e&oe=57700588", "http://www.w3schools.com/images/w3schools_green.jpg", "http://www.w3schools.com/images/w3schools_green.jpg", "http://www.w3schools.com/images/w3schools_green.jpg", "http://www.w3schools.com/images/w3schools_green.jpg", "http://www.w3schools.com/images/w3schools_green.jpg", "http://www.w3schools.com/images/w3schools_green.jpg", "http://www.w3schools.com/images/w3schools_green.jpg", "http://www.w3schools.com/images/w3schools_green.jpg"];
+            var medium= ["http://www.w3schools.com/images/w3schools_green.jpg", "https://scontent.xx.fbcdn.net/hphotos-xpf1/v/t1.0-9/12508810_10208635411586437_8162708858364444974_n.jpg?oh=b55d48a05b17f6e626b29e1ee948658e&oe=57700588"];
+            var low = ["https://scontent.xx.fbcdn.net/hphotos-xpf1/v/t1.0-9/12508810_10208635411586437_8162708858364444974_n.jpg?oh=b55d48a05b17f6e626b29e1ee948658e&oe=57700588"];
 
-          //document.querySelector("#output").innerHTML = snap.val().bad[0];
-          //document.querySelector("#output").innerHTML = snap.val().bad[0];
-          document.querySelector("#output").innerHTML = '<img src="http://www.w3schools.com/images/w3schools_green.jpg" alt="W3Schools.com">';
-          document.querySelector("#output").innerHTML += '<p>fuck.me</p>';
-      });
+            if (!snap.val()) return;
+            document.querySelector("#output").innerHTML += '<h3>Results</h3>';
+            if (bad.length>0){
+                document.querySelector("#output").innerHTML += '<div class="high"></div>';
+                document.querySelector(".high").innerHTML += '<h3>High</h3>';
+                for (var i = 0; i < bad.length; i++) {
+                    document.querySelector(".high").innerHTML += '<p class="stack-high"><img src='+bad[i]+' alt="W3Schools.com" style="width:175px;height:175px;"></p>';
+                    //document.querySelector("#output").innerHTML += ;
+                    // document.querySelector("#output").innerHTML += ;
+
+                }
+                // document.querySelector("#output").innerHTML += '</div>';
+            }
+            if (medium.length>0){
+                document.querySelector("#output").innerHTML += '<div class="medium"></div>';
+                document.querySelector(".medium").innerHTML += '<h3>Medium</h3>';
+                for (var i = 0; i < medium.length; i++) {
+                    document.querySelector(".medium").innerHTML += '<p class="stack-med"><img src='+medium[i]+' alt="W3Schools.com" style="width:175px;height:175px;"></p>';
+
+
+                }
+                // document.querySelector("#output").innerHTML += '</div>';
+            }
+            if (low.length>0){
+                document.querySelector("#output").innerHTML += '<div class="low"></div>';
+                document.querySelector(".low").innerHTML += '<h3>Low</h3>';
+                for (var i = 0; i < low.length; i++) {
+                    document.querySelector(".low").innerHTML += '<p class="stack-low"><img src='+low[i]+' alt="W3Schools.com" style="width:175px;height:175px;"></p>';
+
+
+                }
+                // document.querySelector("#output").innerHTML += '</div>';
+            }
+
+
+            //document.querySelector("#output").innerHTML += bad[1];
+            //if(!snap.val().high.length==0) {
+            ///   document.querySelector("#output").innerHTML = '<p class="stack"><img src=snap.val().high[0] alt="W3Schools.com" style="width:42px;height:42px;border:0;"></p>';
+            // document.querySelector("#output").innerHTML += '<p class="stack"><img src=snap.val().high[0] alt="image1" style="width:42px;height:42px;border:0;"></p>';
+            // }
+        });
       ref.remove();
     })
 
