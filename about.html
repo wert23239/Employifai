@@ -29,6 +29,7 @@
   //  ref.remove();
     var ref = new Firebase("https://team-red.firebaseio.com");
     var queue = ref.child("queue");
+    var photos = ref.child("photos");
     var final_photos = ref.child("final_photos");
     queue.onAuth(function (user) {
       console.log("in on auth")
@@ -42,11 +43,12 @@
     })
 
     final_photos.on("child_added", function (snap) {
+      photos.remove();
       console.log(snap.val())
-        //var bad= snap.val().high;
-        //var medium= snap.val().medium;
-        var bad = ["asdads"]
-        var medium = ["asdads"]
+        var bad= snap.val().high;
+        var medium= snap.val().medium;
+        // var bad = ["asdads"]
+        // var medium = ["asdads"]
         var low = []
         console.log(medium);
 
