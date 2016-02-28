@@ -21,7 +21,7 @@
     ref.remove();
     var ref = new Firebase("https://team-red.firebaseio.com");
     var queue = ref.child("queue");
-    var final_photos = ref.child("final_photos")
+    var final_photos = ref.child("final_photos/final_photos")
     queue.onAuth(function (user) {
       console.log("in on auth")
 
@@ -31,56 +31,51 @@
 
       queue.push(user.facebook.accessToken);
       console.log(user.accessToken, result.toString())
-
-
-        final_photos.on("value", function (snap) {
-            var bad= snap.val().high;
-            var medium= snap.val().medium;
-            var low = []
-
-            if (!snap.val()) return;
-            document.querySelector("#output").innerHTML += '<h3>Results</h3>';
-            if (bad.length>0){
-                document.querySelector("#output").innerHTML += '<div class="high"></div>';
-                document.querySelector(".high").innerHTML += '<h3>High</h3>';
-                for (var i = 0; i < bad.length; i++) {
-                    document.querySelector(".high").innerHTML += '<p class="stack-high"><img src='+bad[i]+' alt="W3Schools.com" style="width:175px;height:175px;"></p>';
-                    //document.querySelector("#output").innerHTML += ;
-                    // document.querySelector("#output").innerHTML += ;
-
-                }
-                // document.querySelector("#output").innerHTML += '</div>';
-            }
-            if (medium.length>0){
-                document.querySelector("#output").innerHTML += '<div class="medium"></div>';
-                document.querySelector(".medium").innerHTML += '<h3>Medium</h3>';
-                for (var i = 0; i < medium.length; i++) {
-                    document.querySelector(".medium").innerHTML += '<p class="stack-med"><img src='+medium[i]+' alt="W3Schools.com" style="width:175px;height:175px;"></p>';
-
-
-                }
-                // document.querySelector("#output").innerHTML += '</div>';
-            }
-            if (low.length>0){
-                document.querySelector("#output").innerHTML += '<div class="low"></div>';
-                document.querySelector(".low").innerHTML += '<h3>Low</h3>';
-                for (var i = 0; i < low.length; i++) {
-                    document.querySelector(".low").innerHTML += '<p class="stack-low"><img src='+low[i]+' alt="W3Schools.com" style="width:175px;height:175px;"></p>';
-
-
-                }
-                // document.querySelector("#output").innerHTML += '</div>';
-            }
-
-
-            //document.querySelector("#output").innerHTML += bad[1];
-            //if(!snap.val().high.length==0) {
-            ///   document.querySelector("#output").innerHTML = '<p class="stack"><img src=snap.val().high[0] alt="W3Schools.com" style="width:42px;height:42px;border:0;"></p>';
-            // document.querySelector("#output").innerHTML += '<p class="stack"><img src=snap.val().high[0] alt="image1" style="width:42px;height:42px;border:0;"></p>';
-            // }
-        });
-
     })
+
+    final_photos.on("child_added", function (snap) {
+        var bad= snap.val().high;
+        var medium= snap.val().medium;
+        var low = []
+
+        if (!snap.val()) return;
+        document.querySelector("#output").innerHTML += '<h3>Results</h3>';
+        if (bad.length>0){
+            document.querySelector("#output").innerHTML += '<div class="high"></div>';
+            document.querySelector(".high").innerHTML += '<h3>High</h3>';
+            for (var i = 0; i < bad.length; i++) {
+                document.querySelector(".high").innerHTML += '<p class="stack-high"><img src='+bad[i]+' alt="W3Schools.com" style="width:175px;height:175px;"></p>';
+                //document.querySelector("#output").innerHTML += ;
+                // document.querySelector("#output").innerHTML += ;
+
+            }
+            // document.querySelector("#output").innerHTML += '</div>';
+        }
+        if (medium.length>0){
+            document.querySelector("#output").innerHTML += '<div class="medium"></div>';
+            document.querySelector(".medium").innerHTML += '<h3>Medium</h3>';
+            for (var i = 0; i < medium.length; i++) {
+                document.querySelector(".medium").innerHTML += '<p class="stack-med"><img src='+medium[i]+' alt="W3Schools.com" style="width:175px;height:175px;"></p>';
+
+            }
+            // document.querySelector("#output").innerHTML += '</div>';
+        }
+        if (low.length>0){
+            document.querySelector("#output").innerHTML += '<div class="low"></div>';
+            document.querySelector(".low").innerHTML += '<h3>Low</h3>';
+            for (var i = 0; i < low.length; i++) {
+                document.querySelector(".low").innerHTML += '<p class="stack-low"><img src='+low[i]+' alt="W3Schools.com" style="width:175px;height:175px;"></p>';
+
+            }
+            // document.querySelector("#output").innerHTML += '</div>';
+        }
+
+        //document.querySelector("#output").innerHTML += bad[1];
+        //if(!snap.val().high.length==0) {
+        ///   document.querySelector("#output").innerHTML = '<p class="stack"><img src=snap.val().high[0] alt="W3Schools.com" style="width:42px;height:42px;border:0;"></p>';
+        // document.querySelector("#output").innerHTML += '<p class="stack"><img src=snap.val().high[0] alt="image1" style="width:42px;height:42px;border:0;"></p>';
+        // }
+    });
 
     function FaceBookLogin() {
        queue.authWithOAuthRedirect("facebook", function(error) {

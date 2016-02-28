@@ -50,8 +50,10 @@ for image in photo_list:
     print(len(tag_dict),sum,bad)
 
     if (sum >= 5 and bad >= 3) or sum>6:
+            print ("high")
             high.append(image)
     elif (sum <= 3 and bad <= 2) or (sum<1.25 or bad==0):
+            print ("low")
             low.append(image)
     else:
             medium.append(image)
@@ -59,8 +61,8 @@ for image in photo_list:
 
 
 print("high",high)
-print("medium",medium)
+print("low",low)
 
-final_photos_list = {"high":high, "medium": medium}
+final_photos_list = {"high":high, "medium": low}
 
 ref.put('/final_photos', 'final_photos', final_photos_list)
