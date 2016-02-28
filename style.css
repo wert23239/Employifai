@@ -4,6 +4,11 @@ a, a:hover, a:visited, a:focus{
     color: white;
 }
 
+.res{
+    color: #7c795d; font-family: 'Lucida Console', 'Lucida Sans Typewriter', monaco, serif; font-size: 45px; font-weight: normal; line-height: 48px;
+    margin: 20em 0 0 0;
+}
+
 .starts{
     font-family: 'Lucida Console', 'Lucida Sans Typewriter', monaco;
  }
@@ -80,10 +85,20 @@ p {
     background: yellow;
 }
 
+.mediumH,.highH
+{
+     font-family: 'Lucida Console', 'Lucida Sans Typewriter', monaco, serif; font-size: 35px; font-weight: normal; line-height: 48px; margin: 0;
+}
 
+.mediumH
+{
+    color: red;
+}
 
-
-
+.highH
+{
+    color: orange;
+}
 
 
 
