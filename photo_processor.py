@@ -9,7 +9,7 @@ while True:
     if (ref.get('/photos', None)):
 
         photo_list = ref.get('/photos', None)["links"]
-
+        #print(photo_list)
         clarifai_api2 = ClarifaiApi('TXjKzuGltUsD3O-SX_NEHmMcUt9YaxmhtBsGPq5l',\
                                     'b2cR6i4a5PLZcB1a2OL4hvN0O4wSInqnLFldiQVM') # assumes environment variables are set.
 
@@ -22,7 +22,7 @@ while True:
 
 
         for image in photo_list:
-            url = image[url];
+            url = image['url'];
             tag_dict = {}
             result2 = clarifai_api2.tag_image_urls(url, select_classes=tags)
             bad=0
@@ -39,7 +39,7 @@ while True:
                     tag_dict[tag] = prob
 
 
-                if prob > .5:
+                if prob > .8:
                     bad = bad+1
 
             for tag in tag_dict:
@@ -51,20 +51,23 @@ while True:
             if (sum >= 5 and bad >= 3) or sum>6:
                     print ("high")
                     high.append(image)
-            elif (sum <= 3 and bad <= 1) or (sum<1 or bad==0):
+            elif (sum <= 3 and bad <= 2) or (sum<1.25 or bad==0):
                     print ("low")
                     low.append(image)
             else:
+                    print("medium")
                     medium.append(image)
 
 
 
         print("high",high)
-        print("low",low)
+        print("medium",medium)
         if len(high)==0:
-            high.append("empty")
+            high.append({'url' : 0})
+
         if len(medium)==0:
-            medium.append("empty")
+            medium.append({'url' : 0})
+
 
         final_photos_list = {"high":high, "medium": medium}
 

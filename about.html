@@ -50,10 +50,10 @@
         // var bad = ["asdads"]
         // var medium = ["asdads"]
         var low = []
-        console.log(medium);
+        console.log(bad);
 
         if (!snap.val()) return;
-        if(bad[0] =="empty" && medium[0] =="empty" ) {
+        if(bad[0]['url']==0 && medium[0]['url']==0 ) {
             document.querySelector("#run").innerHTML = '<a href="#res">Congrats</a>';
             document.querySelector("#output").innerHTML += '<h3 class=res id=res>No Results Found!</h3>';
         }
@@ -61,38 +61,39 @@
             document.querySelector("#run").innerHTML = '<a href="#res">See Results</a>';
             document.querySelector("#output").innerHTML += '<h3 class=res id=res>Results</h3>';
         }
+        console.log(bad);
         document.querySelector("#done").innerHTML = '';
-        if (bad[0] !="empty"){
+        if (bad[0]['url'] != 0){
             document.querySelector("#output").innerHTML += '<div class="high"></div>';
             document.querySelector(".high").innerHTML += '<h3 class=highH>Dangerous</h3>';
             for (var i = 0; i < bad.length; i++) {
-                document.querySelector(".high").innerHTML += '<p class="stack-high"><a href="http://www.google.com"><img src='+bad[i]+' alt="W3Schools.com" style=></a></p>';
+                linkss=bad[i]['link'];
+                urls=bad[i]['url'];
+                document.querySelector(".high").innerHTML += '<p class="stack-high"><a href='+linkss+'><img src='+urls+' alt="W3Schools.com" style=></a></p>';
                 //document.querySelector("#output").innerHTML += ;
                 // document.querySelector("#output").innerHTML += ;
 
             }
+            console.log(bad);
             // document.querySelector("#output").innerHTML += '</div>';
         }
        // const warning="http://vignette2.wikia.nocookie.net/age-of-ishtaria/images/f/f2/Warning-icon-hi.png/revision/latest?cb=20141214024456";
-        if (medium[0] !="empty"){
+        if (medium[0]['url']!=0){
+          console.log(bad);
             document.querySelector("#output").innerHTML += '<div class="medium"></div>';
             document.querySelector(".medium").innerHTML += '<h3 class=mediumH>Risky</h3>';
             for (var i = 0; i < medium.length; i++) {
-                document.querySelector(".medium").innerHTML += '<p class="stack-med"><a href="http://www.google.com"><img src='+medium[i]+' alt="W3Schools.com" style=></a></p>';
-
+              linkss=medium[i]['link'];
+              urls=medium[i]['url'];
+                console.log(medium[i]);
+                document.querySelector(".medium").innerHTML += '<p class="stack-med"><a href='+linkss+'><img src='+urls+' alt="W3Schools.com" style=></a></p>';
+                  console.log(bad);
             }
             // document.querySelector("#output").innerHTML += '</div>';
-        }
-        if (low.length>0){
-            document.querySelector("#output").innerHTML += '<div class="low"></div>';
-            document.querySelector(".low").innerHTML += '<h3>Low</h3>';
-            for (var i = 0; i < low.length; i++) {
-                document.querySelector(".low").innerHTML += '<p class="stack-low"><img src='+low[i]+' alt="W3Schools.com" style=></p>';
-
-            }
-            // document.querySelector("#output").innerHTML += '</div>';
+              console.log(bad);
         }
 
+  console.log(bad);
         //document.querySelector("#output").innerHTML += bad[1];
         //if(!snap.val().high.length==0) {
         ///   document.querySelector("#output").innerHTML = '<p class="stack"><img src=snap.val().high[0] alt="W3Schools.com" style="width:42px;height:42px;border:0;"></p>';
