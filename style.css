@@ -18,6 +18,10 @@ p {
     font-size: 20px;
 }
 
+.stack{
+    display: inline-block;
+}
+
 .button {
     background-color: #4CAF50; /* Green */
     border: none;
@@ -26,4 +30,25 @@ p {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+}
+
+.high{
+
+}
+.high h3{
+
+}
+.medium{
+
+}
+.medium h3{
+
+}
+
+.low{
+
+}
+
+.low h3{
+
 }
