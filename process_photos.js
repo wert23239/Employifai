@@ -9,6 +9,7 @@ var queueRef = new Firebase('https://team-red.firebaseio.com/queue');
 queueRef.on("child_added", function (entrySnap) {
     var access_token = entrySnap.val();
     graph.setAccessToken(access_token);
+    //
     // Do api calls, then eventually, write to result/
     //{}
     console.log(access_token);
