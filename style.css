@@ -1,6 +1,12 @@
+a, a:hover, a:visited, a:focus{
+    text-decoration: none;
+    color: #468cc8;
+}
+
 body {
     background-color: #d0e4fe;
     text-align: center;
+    margin: 0px;
 }
 
 h1 {
@@ -13,14 +19,38 @@ h2{
     font-size: .75em;
     color: grey;
 }
+
+h3{
+    padding-top: 25px;
+    font-size: 1.5rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+button.hidden {
+    display: none;
+}
+
 p {
     font-family: "Times New Roman";
     font-size: 20px;
 }
 
-.stack{
+.stack-low, .stack-med, .stack-high{
     display: inline-block;
+    padding: 10px;
 }
+
+/*.stack-high img{
+    border: 10px solid red;
+}
+
+.stack-med img{
+    border: 10px solid orange;
+}
+
+.stack-low img{
+    border: 10px solid yellow;
+}*/
 
 .button {
     background-color: #4CAF50; /* Green */
@@ -33,22 +63,13 @@ p {
 }
 
 .high{
-
+    background: red;
 }
-.high h3{
 
-}
 .medium{
-
-}
-.medium h3{
-
+    background: orange;
 }
 
 .low{
-
-}
-
-.low h3{
-
+    background: yellow;
 }
