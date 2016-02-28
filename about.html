@@ -10,11 +10,20 @@
 <body>
 <h1>Employifai</h1>
 <h2>The Facebook Cleanser</h2>
-<p>Click here to get rid of all bad photos on Facebook.</p>
+<p class="starts">Click here to find what shouldn't be on Facebook.</p>
 <p><button class="button" id="login">Login</button></p>
-<p><button class="button" id="run"><a href="#res">Run</a></button></p>
+<p><button class="button" id="run"><a href="#res">Wait</a></button></p>
 <p id="output"></p>
-<p>Loading</p>
+<p>
+<div class="loader">
+    <div class="loader__bar"></div>
+    <div class="loader__bar"></div>
+    <div class="loader__bar"></div>
+    <div class="loader__bar"></div>
+    <div class="loader__bar"></div>
+    <div class="loader__ball"></div>
+</div>
+</p>
 <script>
 //    var ref = new Firebase("https://team-red.firebaseio.com");
   //  ref.remove();
@@ -42,7 +51,7 @@
         console.log(medium);
 
         if (!snap.val()) return;
-        document.querySelector("#run").innerHTML += '<a href="#res">See Results</a>';
+        document.querySelector("#run").innerHTML = '<a href="#res">See Results</a>';
         document.querySelector("#output").innerHTML += '<h3 class=res id=res>Results</h3>';
         if (bad[0] !="empty"){
             document.querySelector("#output").innerHTML += '<div class="high"></div>';
