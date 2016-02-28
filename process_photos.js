@@ -18,6 +18,12 @@ queueRef.on("child_added", function (entrySnap) {
       .get("/me/photos/uploaded", function(err, res) {
         console.log(err);
         console.log(res); // { id: '4', name: 'Mark Zuckerberg'... }
+        while(res.paging && res.paging.next) {
+          graph.get(res.paging.next, function(err, res) {
+            console.log(err);
+            console.log(res);
+          });
+        }
       });
 
     entrySnap.ref().child("result").set({bad: ["one", "two"],warning: "asd"});
