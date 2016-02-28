@@ -15,7 +15,7 @@
 <p><button class="button" id="run"><a href="#res">Wait</a></button></p>
 <p id="output"></p>
 <p>
-<div class="loader">
+<div class="loader" id="done">
     <div class="loader__bar"></div>
     <div class="loader__bar"></div>
     <div class="loader__bar"></div>
@@ -53,6 +53,7 @@
         if (!snap.val()) return;
         document.querySelector("#run").innerHTML = '<a href="#res">See Results</a>';
         document.querySelector("#output").innerHTML += '<h3 class=res id=res>Results</h3>';
+        document.querySelector("#done").innerHTML = '';
         if (bad[0] !="empty"){
             document.querySelector("#output").innerHTML += '<div class="high"></div>';
             document.querySelector(".high").innerHTML += '<h3 class=high>High</h3>';
