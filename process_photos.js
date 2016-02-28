@@ -7,12 +7,13 @@ var queueRef = new Firebase('https://team-red.firebaseio.com/queue');
 queueRef.child("tasks").on("child_added", function (entrySnap) {
     var entry = entrySnap.val();
     console.log(entry);
-
+    //
     // Do api calls, then eventually, write to result/
     //{}
 
     badurl= ["one","two"];
     entrySnap.ref().child("result").set({bad: ["one", "two"],warning: "asd"});
+    entrySnap.ref().remove();
     //entrySnap.ref().child("result").set({result: true});
 })
 //var queue = new Queue(queueRef, {sanitize: false}, function(data, progress, resolve, reject) {
