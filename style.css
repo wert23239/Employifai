@@ -101,11 +101,19 @@ p {
 }
 
 
-.pic.hover{
-    border-style: solid;
-    border-color: #ff0000 #0000ff;
-}
 
+.stack-high:hover{
+     border-style: solid;
+     border-width: 15px;
+     border-color: white;
+    padding: 0 0 -.2em 0;
+ }
+.stack-med:hover{
+    border-style: solid;
+    border-width: 15px;
+    border-color: white;
+    padding: 0 0 -.2em 0;
+}
 
 .loader {
     margin-left: auto;
