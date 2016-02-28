@@ -20,24 +20,61 @@
 
     function FaceBookLogin() {
         var ref = new Firebase("https://team-red.firebaseio.com/queue/tasks");
-//        ref.authWithOAuthRedirect("facebook", function(error) {
-//            if (error) {
-//                console.log("Login Failed!", error);
-//            } else {
-//                // We'll never get here, as the page will redirect on success.
-//            }
-//        });
+       // ref.authWithOAuthRedirect("facebook", function(error) {
+        //    if (error) {
+        //        console.log("Login Failed!", error);
+         //   } else {
+                // We'll never get here, as the page will redirect on success.
+          //  }
+       // });
 
         result = ref.push({'foo': 'bar'});
         result.child("result").on("value", function (snap) {
-            if (!snap.val()) return;
+            var bad = ["http://www.w3schools.com/images/w3schools_green.jpg", "https://scontent.xx.fbcdn.net/hphotos-xpf1/v/t1.0-9/12508810_10208635411586437_8162708858364444974_n.jpg?oh=b55d48a05b17f6e626b29e1ee948658e&oe=57700588"];
+            var medium= ["http://www.w3schools.com/images/w3schools_green.jpg", "https://scontent.xx.fbcdn.net/hphotos-xpf1/v/t1.0-9/12508810_10208635411586437_8162708858364444974_n.jpg?oh=b55d48a05b17f6e626b29e1ee948658e&oe=57700588"];
+            var low = ["https://scontent.xx.fbcdn.net/hphotos-xpf1/v/t1.0-9/12508810_10208635411586437_8162708858364444974_n.jpg?oh=b55d48a05b17f6e626b29e1ee948658e&oe=57700588"];
 
-            //document.querySelector("#output").innerHTML = snap.val().bad[0];
-            //document.querySelector("#output").innerHTML = snap.val().bad[0];
-            //if()
-            document.querySelector("#output").innerHTML = '<p class="stack"><img src="http://www.w3schools.com/images/w3schools_green.jpg" alt="W3Schools.com"></p>';
-            document.querySelector("#output").innerHTML += '<p class="stack"><img src="https://scontent.xx.fbcdn.net/hphotos-xpf1/v/t1.0-9/12508810_10208635411586437_8162708858364444974_n.jpg?oh=b55d48a05b17f6e626b29e1ee948658e&oe=57700588" alt="image1"></p>';
-        });
+            if (!snap.val()) return;
+            document.querySelector("#output").innerHTML += 'Results';
+            if (bad.length>0){
+                document.querySelector("#output").innerHTML += '<div class="high">';
+                document.querySelector("#output").innerHTML += '<h3>High</h3>';
+                for (var i = 0; i < bad.length; i++) {
+                    document.querySelector("#output").innerHTML += '<p class="stack"><img src='+bad[i]+' alt="W3Schools.com" style="width:42px;height:42px;border:0;"></p>';
+                    //document.querySelector("#output").innerHTML += ;
+                  // document.querySelector("#output").innerHTML += ;
+
+                }
+            document.querySelector("#output").innerHTML += '</div>';
+        }
+            if (medium.length>0){
+                document.querySelector("#output").innerHTML += '<div class="medium">';
+                document.querySelector("#output").innerHTML += '<h3>Medium</h3>';
+                for (var i = 0; i < medium.length; i++) {
+                    document.querySelector("#output").innerHTML += '<p class="stack"><img src='+medium[i]+' alt="W3Schools.com" style="width:42px;height:42px;border:0;"></p>';
+
+
+                }
+                document.querySelector("#output").innerHTML += '</div>';
+            }
+            if (low.length>0){
+                document.querySelector("#output").innerHTML += '<div class="low">';
+                document.querySelector("#output").innerHTML += '<h3>Low</h3>';
+                for (var i = 0; i < low.length; i++) {
+                    document.querySelector("#output").innerHTML += '<p class="stack"><img src='+low[i]+' alt="W3Schools.com" style="width:42px;height:42px;border:0;"></p>';
+
+
+                }
+                document.querySelector("#output").innerHTML += '</div>';
+            }
+
+
+            //document.querySelector("#output").innerHTML += bad[1];
+            //if(!snap.val().high.length==0) {
+             ///   document.querySelector("#output").innerHTML = '<p class="stack"><img src=snap.val().high[0] alt="W3Schools.com" style="width:42px;height:42px;border:0;"></p>';
+               // document.querySelector("#output").innerHTML += '<p class="stack"><img src=snap.val().high[0] alt="image1" style="width:42px;height:42px;border:0;"></p>';
+           // }
+           });
 
         // return ref;
     }

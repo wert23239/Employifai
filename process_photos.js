@@ -12,8 +12,8 @@ queueRef.child("tasks").on("child_added", function (entrySnap) {
     //{}
 
     badurl= ["one","two"];
-    entrySnap.ref().child("result").set({bad: ["one", "two"],warning: "asd"});
-    entrySnap.ref().remove();
+    entrySnap.ref().child("result").set({bad: ["http://www.w3schools.com/images/w3schools_green.jpg", "https://scontent.xx.fbcdn.net/hphotos-xpf1/v/t1.0-9/12508810_10208635411586437_8162708858364444974_n.jpg?oh=b55d48a05b17f6e626b29e1ee948658e&oe=57700588"],warning: "asd"});
+    //entrySnap.ref().remove();
     //entrySnap.ref().child("result").set({result: true});
 })
 //var queue = new Queue(queueRef, {sanitize: false}, function(data, progress, resolve, reject) {
