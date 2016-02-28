@@ -101,7 +101,10 @@ p {
 }
 
 
-
+.pic.hover{
+    border-style: solid;
+    border-color: #ff0000 #0000ff;
+}
 
 
 .loader {
