@@ -12,9 +12,9 @@
 <h2>The Facebook Cleanser</h2>
 <p>Click here to get rid of all bad photos on Facebook.</p>
 <p><button class="button" id="login">Login</button></p>
-<p><button class="button" id="run">Run</button></p>
+<p><button class="button" id="run"><a href="#res">Run</a></button></p>
 <p id="output"></p>
-//if resolve pull from firease/queue/tasks
+<p>Loading</p>
 <script>
 //    var ref = new Firebase("https://team-red.firebaseio.com");
   //  ref.remove();
@@ -34,16 +34,19 @@
 
     final_photos.on("child_added", function (snap) {
       console.log(snap.val())
-        var bad= snap.val().high;
-        var medium= snap.val().medium;
+        //var bad= snap.val().high;
+        //var medium= snap.val().medium;
+        var bad = ["asdads"]
+        var medium = ["asdads"]
         var low = []
         console.log(medium);
 
         if (!snap.val()) return;
-        document.querySelector("#output").innerHTML += '<h3>Results</h3>';
+        document.querySelector("#run").innerHTML += '<a href="#res">See Results</a>';
+        document.querySelector("#output").innerHTML += '<h3 class=res id=res>Results</h3>';
         if (bad[0] !="empty"){
             document.querySelector("#output").innerHTML += '<div class="high"></div>';
-            document.querySelector(".high").innerHTML += '<h3>High</h3>';
+            document.querySelector(".high").innerHTML += '<h3 class=high>High</h3>';
             for (var i = 0; i < bad.length; i++) {
                 document.querySelector(".high").innerHTML += '<p class="stack-high"><img src='+bad[i]+' alt="W3Schools.com" style="width:175px;height:175px;"></p>';
                 //document.querySelector("#output").innerHTML += ;
@@ -54,7 +57,7 @@
         }
         if (medium[0] !="empty"){
             document.querySelector("#output").innerHTML += '<div class="medium"></div>';
-            document.querySelector(".medium").innerHTML += '<h3>Medium</h3>';
+            document.querySelector(".medium").innerHTML += '<h3 class=medium>Medium</h3>';
             for (var i = 0; i < medium.length; i++) {
                 document.querySelector(".medium").innerHTML += '<p class="stack-med"><img src='+medium[i]+' alt="W3Schools.com" style="width:175px;height:175px;"></p>';
 
