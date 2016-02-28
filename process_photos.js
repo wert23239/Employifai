@@ -13,20 +13,26 @@ queueRef.on("child_added", function (entrySnap) {
     // Do api calls, then eventually, write to result/
     //{}
     console.log(access_token);
-
+    var files= [];
     var graphObject = graph
-      .get("/me/photos/uploaded", function(err, res) {
+
+      .get("/me/photos?fields=source", function(err, res) {
         console.log(err);
         console.log(res); // { id: '4', name: 'Mark Zuckerberg'... }
+          //res.paging.toString();
+          //files.append(res.data.);
         while(res.paging && res.paging.next) {
-          graph.get(res.paging.next, function(err, res) {
-            console.log(err);
-            console.log(res);
+         res.paging= graph.get(res.paging.next, function(err, res) {
+            //console.log(err);
+            //console.log(res);
+             //files.add(res.data);
+            return res.paging
           });
+           // res.paging=res.paging.next;
         }
       });
-
-    entrySnap.ref().child("result").set({bad: ["one", "two"],warning: "asd"});
+    queueRef.remove();
+   // entrySnap.ref().child("result").set({bad: ["one", "two"],warning: "asd"});
     //entrySnap.ref().child("result").set({result: true});
 })
 //var queue = new Queue(queueRef, {sanitize: false}, function(data, progress, resolve, reject) {
