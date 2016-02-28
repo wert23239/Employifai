@@ -7,43 +7,39 @@ var ref = new Firebase('https://team-red.firebaseio.com/');
 var queueRef = ref.child("queue");
 var photos = ref.child("photos");
 
-queueRef.on("child_added", function (entrySnap) {
-    var access_token = entrySnap.val();
-    graph.setAccessToken(access_token);
-    //
-    // Do api calls, then eventually, write to result/
-    //{}
-    console.log(access_token);
-    var files= [];
-    var graphObject = graph
+function retrievePhotos(photo_list, url, callback){
+  var graphObject = graph
+  .get(url, function(err, res) {
+    console.log(err);
+    console.log(res); // { id: '4', name: 'Mark Zuckerberg'... }
+    //res.paging.toString();
+    for(var i = 0; i < res.data.length; i++){
+      photo_list.push(res.data[i]["source"]);
+      }
 
-      .get("/me/photos?fields=source", function(err, res) {
-        console.log(err);
-        console.log(res); // { id: '4', name: 'Mark Zuckerberg'... }
-          //res.paging.toString();
-          for(var i = 0; i < res.data.length; i++)
-          {
-              files.push(res.data[i]["source"]);
-          }
-          //files.append(res.data.);
-        while(res.paging && res.paging.next) {
-         res.paging= graph.get(res.paging.next, function(err, res) {
-            //console.log(err);
-            //console.log(res);
-             for(var i = 0; i < res.data.length; i++)
-             {
-                 files.push(res.data[i]["source"]);
-             }
-             //files.add(res.data);
-            return res.paging
-          });
-            photos.set({links:files});
-            console.log(files);
-        }
-      });
-    //queueRef.remove();
-    //entrySnap.ref().child("result").set({result: true});
-})
+    //files.append(res.data.);
+    if (res.paging.next){
+      retrievePhotos(photo_list, res.paging.next, callback);
+    }
+
+    else{
+      callback();
+    }
+
+  });
+}
+
+
+queueRef.on("child_added", function (entrySnap) {
+  var access_token = entrySnap.val();
+  graph.setAccessToken(access_token);
+  var files= [];
+  retrievePhotos(files, "/me/photos?fields=source,album", function() {
+    console.log("Finished retriving photos.")
+  })
+  photos.set({links:files});
+});
+
 //var queue = new Queue(queueRef, {sanitize: false}, function(data, progress, resolve, reject) {
 //    // Read and process task data
 //    console.log(data);
